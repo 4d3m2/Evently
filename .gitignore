@@ -1,0 +1,18 @@
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Dependencies and generated files (rebuilt from composer.json / package.json)
+/vendor/
+/node_modules/
+/var/
+
+# User-uploaded content is data, not source code
+/public/uploads/
+
+# Editor / OS noise
+.idea/
+.vscode/
+.DS_Store
