@@ -1,0 +1,12 @@
+{
+    "name": "evently",
+    "private": true,
+    "description": "Frontend and Git tooling for Evently (not a package)",
+    "scripts": {
+        "format": "prettier --write --no-error-on-unmatched-pattern \"assets/**/*.{js,css}\" \".github/**/*.yml\" docker-compose.yml package.json .prettierrc.json README.md",
+        "format:check": "prettier --check --no-error-on-unmatched-pattern \"assets/**/*.{js,css}\" \".github/**/*.yml\" docker-compose.yml package.json .prettierrc.json README.md"
+    },
+    "devDependencies": {
+        "prettier": "3.10.1"
+    }
+}

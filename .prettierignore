@@ -1,0 +1,8 @@
+vendor/
+var/
+node_modules/
+public/uploads/
+composer.json
+composer.lock
+symfony.lock
+package-lock.json
