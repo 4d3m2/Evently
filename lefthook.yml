@@ -28,3 +28,5 @@ pre-push:
   commands:
     quality:
       run: docker compose exec -T php composer quality
+    tests:
+      run: docker compose exec -T php composer test
