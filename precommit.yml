@@ -1,0 +1,30 @@
+# Quick checks run at commit time. Comprehensive checks run in CI.
+# PHP tools run inside the 'php' container (start it with: docker compose up -d).
+# -T disables the pseudo-TTY, which hooks do not have.
+
+pre-commit:
+  commands:
+    php-lint:
+      glob: '*.{php,yaml,yml}'
+      run: docker compose exec -T php composer lint
+    php-style:
+      glob: '*.php'
+      run: docker compose exec -T php composer fix:dry
+    frontend-format:
+      glob: '*.{js,css,yml,yaml,json,md}'
+      run: npm run format:check
+
+commit-msg:
+  commands:
+    conventional-commit:
+      run: |
+        head -n1 {1} | grep -Eq '^((feat|fix|docs|style|refactor|perf|test|build|ci|chore|security|revert)(\([a-z0-9-]+\))?!?: .{1,72}|Merge .*)$' || {
+          echo "Commit message must follow Conventional Commits, e.g. 'feat: add event listing'"
+          echo "Allowed types: feat fix docs style refactor perf test build ci chore security revert"
+          exit 1
+        }
+
+pre-push:
+  commands:
+    quality:
+      run: docker compose exec -T php composer quality
