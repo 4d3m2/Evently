@@ -62,7 +62,15 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "lint:php": "find src config -name '*.php' -print0 | xargs -0 -n1 php -d display_errors=stderr -l > /dev/null",
+        "lint:yaml": "@php bin/console lint:yaml config --parse-tags",
+        "lint:container": "@php bin/console lint:container",
+        "lint": ["@lint:php", "@lint:yaml", "@lint:container"],
+        "analyse": "phpstan analyse --memory-limit=512M",
+        "fix:dry": "php-cs-fixer fix --dry-run --diff",
+        "fix": "php-cs-fixer fix",
+        "quality": ["@lint", "@fix:dry", "@analyse"]
     },
     "conflict": {
         "symfony/symfony": "*"
