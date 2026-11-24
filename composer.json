@@ -70,7 +70,8 @@
         "analyse": "phpstan analyse --memory-limit=512M",
         "fix:dry": "php-cs-fixer fix --dry-run --diff",
         "fix": "php-cs-fixer fix",
-        "quality": ["@lint", "@fix:dry", "@analyse"]
+        "check:composer": "@composer validate --no-check-publish",
+        "quality": ["@check:composer", "@lint", "@fix:dry", "@analyse"]
     },
     "conflict": {
         "symfony/symfony": "*"
