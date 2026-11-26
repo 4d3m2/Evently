@@ -4,3 +4,9 @@ parameters:
         - src
         - tests
     tmpDir: var/cache/phpstan
+    ignoreErrors:
+        -
+            # Doctrine assigns generated IDs through reflection, which PHPStan cannot see.
+            message: '#::\$id \(int\|null\) is never assigned int#'
+            identifier: property.unusedType
+            path: src/Entity/*
